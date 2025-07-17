@@ -1,67 +1,74 @@
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f7f3fc;
+  background-color: #ffe6f0;
+  font-family: 'Segoe UI', sans-serif;
   color: #333;
   margin: 0;
-  padding: 0;
+  padding: 20px;
 }
 
 h1 {
   text-align: center;
-  margin: 20px;
-  color: #6a1b9a;
+  color: #800080;
 }
 
-.container {
+#grid-container {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding: 10px;
+  flex-direction: column;
+  gap: 30px;
 }
 
-.materia {
-  background-color: #e1bee7;
-  border: 2px solid #6a1b9a;
+.year-block {
+  background-color: #f5d0ff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 8px #aaa;
+  transition: all 0.3s ease;
+}
+
+.year-block:hover {
+  transform: scale(1.01);
+}
+
+.year-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #4b0082;
+}
+
+.semester {
+  margin-bottom: 20px;
+}
+
+.semester-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #9932cc;
+}
+
+.subject {
+  background-color: #e6ccff;
+  padding: 10px 15px;
+  margin: 8px 0;
   border-radius: 8px;
-  padding: 10px;
-  margin: 10px;
-  width: 250px;
-  text-align: center;
+  cursor: pointer;
   transition: background-color 0.3s ease;
-  cursor: pointer;
-  position: relative;
+  border: 2px solid #800080;
 }
 
-.materia.desbloqueada {
-  opacity: 1;
-  cursor: pointer;
-}
-
-.materia.bloqueada {
-  background-color: #f3e5f5;
+.subject.locked {
+  background-color: #eee;
+  color: #aaa;
   border-style: dashed;
-  opacity: 0.6;
   cursor: not-allowed;
 }
 
-.materia.aprobada {
-  background-color: #ce93d8;
-  border-color: #4a148c;
+.subject.completed {
+  background-color: #b19cd9;
   text-decoration: line-through;
 }
 
-.requisitos {
-  font-size: 0.9em;
-  color: #555;
-  margin-top: 5px;
-}
-
-.efis {
-  background-color: #ba68c8;
-  color: white;
-  font-weight: bold;
-  padding: 4px 8px;
-  border-radius: 4px;
-  margin-bottom: 10px;
-  display: inline-block;
+.subject:hover:not(.locked):not(.completed) {
+  background-color: #d1b3ff;
 }
