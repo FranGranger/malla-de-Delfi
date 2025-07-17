@@ -1,54 +1,28 @@
-const STORAGE_KEY = "materiasAprobadas";
-const aprobadas = new Set(JSON.parse(localStorage.getItem(STORAGE_KEY)) || []);
-
-function estaDesbloqueada(materia) {
-  const requisitos = (materia.dataset.req || "").split(",").filter(r => r);
-
-  if (requisitos.includes("all")) {
-    // "all" significa que requiere TODAS las demás materias excepto EFIS
-    const todasMenosEfis = Array.from(document.querySelectorAll(".materia"))
-      .filter(m => !m.classList.contains("efi"))
-      .map(m => m.dataset.id);
-    return todasMenosEfis.every(id => aprobadas.has(id));
-  }
-
-  return requisitos.every(req => aprobadas.has(req));
-}
+const STORAGE_KEY = 'mallaVetAprobadas';
+const materias = Array.from(document.querySelectorAll('.materia'));
+let aprobadas = new Set(JSON.parse(localStorage.getItem(STORAGE_KEY)) || []);
 
 function actualizarEstado() {
-  document.querySelectorAll(".materia").forEach(materia => {
-    const id = materia.dataset.id;
-    const desbloqueada = estaDesbloqueada(materia);
-    const aprobada = aprobadas.has(id);
+  materias.forEach(materia => {
+    const id = materia.id;
+    const requisitos = materia.dataset.requisitos ? materia.dataset.requisitos.split(',').filter(x => x) : [];
 
-    // Estilo visual
-    materia.classList.toggle("aprobada", aprobada);
-    materia.classList.toggle("bloqueada", !desbloqueada && !aprobada); // si está aprobada no la bloquea
-    materia.style.opacity = desbloqueada || aprobada ? "1" : "0.5";
-    materia.style.pointerEvents = desbloqueada || aprobada ? "auto" : "none";
-  });
-}
+    // "all" significa que requiere todas las materias (menos optativas/efis)
+    let desbloqueada = requisitos.every(req => {
+      if (req === 'all') {
+        return materias.filter(m => !['m56','m57','m58','m59'].includes(m.id)).every(m => aprobadas.has(m.id));
+      }
+      return aprobadas.has(req);
+    });
 
-function toggleAprobada(event) {
-  const materia = event.currentTarget;
-  const id = materia.dataset.id;
-
-  // Si NO está desbloqueada y no está ya aprobada, no permitas aprobar
-  if (!estaDesbloqueada(materia) && !aprobadas.has(id)) return;
-
-  if (aprobadas.has(id)) {
-    aprobadas.delete(id);
-  } else {
-    aprobadas.add(id);
-  }
-
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(Array.from(aprobadas)));
-  actualizarEstado();
-}
-
-document.querySelectorAll(".materia").forEach(materia => {
-  materia.addEventListener("dblclick", toggleAprobada);
-});
-
-// Inicial
-actualizarEstado();
+    if (aprobadas.has(id)) {
+      materia.classList.add('aprobada');
+      materia.disabled = false; // permitir desmarcarla
+      materia.setAttribute('title', 'Doble clic para desaprobar');
+    } else if (desbloqueada) {
+      materia.disabled = false;
+      materia.classList.remove('aprobada');
+      materia.setAttribute('title', 'Doble clic para aprobar');
+    } else {
+      materia.disabled = true;
+      materia.classList.remove('aproba
