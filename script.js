@@ -35,10 +35,16 @@ function aprobarMateria(event) {
   const btn = event.target;
   if (btn.disabled) return;
 
-  aprobadas.add(btn.id);
+  if (aprobadas.has(btn.id)) {
+    aprobadas.delete(btn.id);
+  } else {
+    aprobadas.add(btn.id);
+  }
+
   localStorage.setItem(STORAGE_KEY, JSON.stringify(Array.from(aprobadas)));
   actualizarEstado();
 }
+
 
 function init() {
   materias.forEach(materia => {
