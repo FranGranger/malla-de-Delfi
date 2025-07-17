@@ -1,200 +1,158 @@
+// --- MALLA DE MATERIAS ---
+
 const materias = [
-  // --- PRIMER AÑO ---
-  {
-    anio: 1,
-    semestre: "Primer semestre",
-    nombre: "Bioquimica", id: "1", requisitos: []
-  },
-  { nombre: "Biofisica", id: "2", requisitos: [] },
-  { nombre: "Biologia celular y del desarrollo", id: "3", requisitos: [] },
-  { nombre: "Embriologia y anatomia sistematica", id: "4", requisitos: [] },
-  { nombre: "Bioestadistica", id: "5", requisitos: [] },
-  {
-    semestre: "Segundo semestre",
-    nombre: "Fisicoquimica aplicada a la fisiología veterinaria", id: "6", requisitos: ["1", "2"]
-  },
-  { nombre: "Microbiologia I", id: "7", requisitos: ["1", "3"] },
-  { nombre: "Histologia", id: "8", requisitos: ["3"] },
+  // PRIMER AÑO - PRIMER SEMESTRE
+  { id: "1", nombre: "Bioquímica" },
+  { id: "2", nombre: "Biofísica" },
+  { id: "3", nombre: "Biología celular y del desarrollo" },
+  { id: "4", nombre: "Embriología y anatomía sistemática" },
+  { id: "5", nombre: "Bioestadística" },
 
-  // --- SEGUNDO AÑO ---
-  {
-    anio: 2,
-    semestre: "Primer cuatrimestre",
-    nombre: "Fisiologia", id: "9", requisitos: ["4", "6", "8"]
-  },
-  { nombre: "Inmunologia animal basica", id: "10", requisitos: ["1", "7", "8"] },
-  { nombre: "Anatomia veterinaria", id: "11", requisitos: ["4"] },
-  { nombre: "Economia general y sociologia", id: "12", requisitos: ["5"] },
-  { nombre: "Microbiologia II", id: "13", requisitos: ["7", "8"] },
-  {
-    semestre: "Segundo cuatrimestre",
-    nombre: "Parasitologia", id: "14", requisitos: ["5", "6", "7", "8"]
-  },
-  { nombre: "Patologia general veterinaria", id: "15", requisitos: ["4", "6", "8", "10"] },
-  { nombre: "Epidemiologia y salud publica basica", id: "16", requisitos: ["5"] },
+  // PRIMER AÑO - SEGUNDO SEMESTRE
+  { id: "6", nombre: "Fisicoquímica aplicada a la fisiología veterinaria", requisitos: ["1", "2"] },
+  { id: "7", nombre: "Microbiología I", requisitos: ["1", "3"] },
+  { id: "8", nombre: "Histología", requisitos: ["3"] },
 
-  // --- TERCER AÑO ---
-  {
-    anio: 3,
-    efis: true,
-    semestre: "Primer cuatrimestre",
-    nombre: "Zootecnia General", id: "17", requisitos: ["9", "11", "12"]
-  },
-  { nombre: "Nutricion animal y alimentos", id: "18", requisitos: ["9", "11", "12", "14"] },
-  { nombre: "Patologia especial", id: "19", requisitos: ["9", "11", "13", "14", "15"] },
-  { nombre: "Farmacologia general", id: "20", requisitos: ["9", "11", "15"] },
-  { nombre: "Genetica General", id: "21", requisitos: ["15"] },
-  {
-    semestre: "Segundo cuatrimestre",
-    nombre: "Genetica de poblaciones y mejoramiento animal", id: "22", requisitos: ["17", "21"]
-  },
-  { nombre: "Semiologia", id: "23", requisitos: ["9", "11", "15"] },
-  { nombre: "Farmacologia general y toxicologia", id: "24", requisitos: ["13", "14", "20"] },
-  { nombre: "Ingles tecnico", id: "25", requisitos: [] },
+  // SEGUNDO AÑO - PRIMER CUATRIMESTRE
+  { id: "9", nombre: "Fisiología", requisitos: ["4", "6", "8"] },
+  { id: "10", nombre: "Inmunología animal básica", requisitos: ["1", "7", "8"] },
+  { id: "11", nombre: "Anatomía veterinaria", requisitos: ["4"] },
+  { id: "12", nombre: "Economía General y Sociología", requisitos: ["5"] },
+  { id: "13", nombre: "Microbiología II", requisitos: ["7", "8"] },
 
-  // --- CUARTO AÑO ---
-  {
-    anio: 4,
-    efis: true,
-    semestre: "Primer cuatrimestre",
-    nombre: "Produccion de aves y piliferos", id: "26", requisitos: ["18", "22"]
-  },
-  { nombre: "Produccion de bovinos de carne", id: "27", requisitos: ["17", "19", "20", "22"] },
-  { nombre: "Infectologia, zoonosis y enfermedades exoticas y emergentes", id: "28", requisitos: ["19", "23", "24"] },
-  { nombre: "Cirugia I", id: "29", requisitos: ["efis3"] },
-  { nombre: "Epidemiologia y salud publica aplicada", id: "30", requisitos: ["17", "19", "23", "24"] },
-  {
-    semestre: "Segundo cuatrimestre",
-    nombre: "Produccion porcina", id: "31", requisitos: ["23", "17", "18", "19", "20", "22"]
-  },
-  { nombre: "Produccion de bovinos con leche", id: "32", requisitos: ["23", "17", "18", "19", "20", "22"] },
-  { nombre: "Produccion equina", id: "33", requisitos: ["23", "17", "18", "19", "20", "22"] },
-  { nombre: "Produccion ovina y caprina", id: "34", requisitos: ["23", "17", "18", "19", "20", "22"] },
-  { nombre: "Enfermedades de rumiantes y cerdos", id: "35", requisitos: ["17", "18", "23", "24", "28", "27", "30"] },
-  { nombre: "Gestion de empresa y economia agraria", id: "36", requisitos: ["18", "17", "22"] },
+  // SEGUNDO AÑO - SEGUNDO CUATRIMESTRE
+  { id: "14", nombre: "Parasitología", requisitos: ["5", "6", "7", "8"] },
+  { id: "15", nombre: "Patología general veterinaria", requisitos: ["4", "6", "8", "10"] },
+  { id: "16", nombre: "Epidemiología y salud pública básica", requisitos: ["5"] },
 
-  // --- QUINTO AÑO ---
-  {
-    anio: 5,
-    efis: true,
-    semestre: "Primer cuatrimestre",
-    nombre: "Tecnologia aplicada a productos alimenticios", id: "37", requisitos: ["28", "35", "30", "27", "32", "26"]
-  },
-  { nombre: "Teriogenologia", id: "38", requisitos: ["28", "30", "27", "32", "31", "34", "35"] },
-  { nombre: "Enfermedades de caninos y felinos domesticos", id: "39", requisitos: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"] },
-  { nombre: "Enfermedades de equinos", id: "40", requisitos: ["33"] },
-  { nombre: "Enfermedades de aves y piliferos", id: "41", requisitos: ["26", "28"] },
-  {
-    semestre: "Segundo cuatrimestre",
-    nombre: "Bromatologia, higiene e inspección", id: "42", requisitos: ["37"]
-  },
-  { nombre: "Analisis clinicos veterinarios", id: "43", requisitos: ["35", "40", "39"] },
-  { nombre: "Metodos complementarios de diagnostico", id: "44", requisitos: ["40", "39"] },
-  { nombre: "Inmunobiologia aplicada", id: "45", requisitos: ["35", "41", "40", "39", "30", "28"] },
-  { nombre: "Ciencia de animales de laboratorio", id: "48", requisitos: ["28"] },
-  { nombre: "Biotecnologia de la reproduccion", id: "46", requisitos: ["38"] },
-  { nombre: "Cirugia II y anestesiologia", id: "47", requisitos: ["35", "40", "39", "38"] },
+  // EFIS TERCER AÑO
+  { id: "efis3", nombre: "EFIS 3°", requisitos: ["1", "2", "3", "4", "5", "6", "7", "8"] },
 
-  // --- SEXTO AÑO ---
-  {
-    anio: 6,
-    efis: true,
-    semestre: "Primer cuatrimestre",
-    nombre: "Clinica de equinos", id: "51", requisitos: ["40", "44", "43", "45", "46", "47", "38"]
-  },
-  { nombre: "Clinica y sanidad de cerdos", id: "52", requisitos: ["43", "45", "46", "38"] },
-  { nombre: "Clinica de caninos y felinos", id: "49", requisitos: ["39", "44", "43", "38"] },
-  { nombre: "Clinica y sanidad de rumiantes", id: "50", requisitos: ["35", "43", "45", "38"] },
-  { nombre: "Bienestar animal", id: "53", requisitos: ["efis4"] },
-  { nombre: "Etica y legislacion", id: "54", requisitos: ["42"] },
-  {
-    semestre: "Segundo cuatrimestre",
-    nombre: "Practicas pre profesionales", id: "55", requisitos: ["efis5"]
-  },
-  { nombre: "Optativa I", id: "56", requisitos: [] },
-  { nombre: "Optativa II", id: "57", requisitos: [] },
-  { nombre: "Optativa III", id: "58", requisitos: [] },
-  { nombre: "Informatica", id: "59", requisitos: [] },
+  // TERCER AÑO
+  { id: "17", nombre: "Zootecnia General", requisitos: ["9", "11", "12", "efis3"] },
+  { id: "18", nombre: "Nutrición animal y alimentos", requisitos: ["9", "11", "12", "14", "efis3"] },
+  { id: "19", nombre: "Patología especial", requisitos: ["9", "11", "13", "14", "15", "efis3"] },
+  { id: "20", nombre: "Farmacología general", requisitos: ["9", "11", "15", "efis3"] },
+  { id: "21", nombre: "Genética General", requisitos: ["15", "efis3"] },
+
+  { id: "22", nombre: "Genética poblacional y mejoramiento animal", requisitos: ["17", "21"] },
+  { id: "23", nombre: "Semiología", requisitos: ["9", "11", "15"] },
+  { id: "24", nombre: "Farmacología general y toxicología", requisitos: ["13", "14", "20"] },
+  { id: "25", nombre: "Inglés técnico" },
+
+  // EFIS CUARTO AÑO
+  { id: "efis4", nombre: "EFIS 4°", requisitos: ["9", "10", "11", "12", "13", "14", "15", "16"] },
+
+  // CUARTO AÑO
+  { id: "26", nombre: "Producción de aves y pilíferos", requisitos: ["18", "22", "efis4"] },
+  { id: "27", nombre: "Producción de bovinos de carne", requisitos: ["17", "19", "20", "22", "efis4"] },
+  { id: "28", nombre: "Infectología, zoonosis y enfermedades exóticas", requisitos: ["19", "23", "24", "efis4"] },
+  { id: "29", nombre: "Cirugía I", requisitos: ["efis4"] },
+  { id: "30", nombre: "Epidemiología aplicada", requisitos: ["17", "19", "23", "24", "efis4"] },
+  { id: "31", nombre: "Producción porcina", requisitos: ["23", "17", "18", "19", "20", "22"] },
+  { id: "32", nombre: "Producción de bovinos con leche", requisitos: ["23", "17", "18", "19", "20", "22"] },
+  { id: "33", nombre: "Producción equina", requisitos: ["23", "17", "18", "19", "20", "22"] },
+  { id: "34", nombre: "Producción ovina y caprina", requisitos: ["23", "17", "18", "19", "20", "22"] },
+  { id: "35", nombre: "Enfermedades de rumiantes y cerdos", requisitos: ["17", "18", "23", "24", "28", "27", "30"] },
+  { id: "36", nombre: "Gestión de empresa y economía agraria", requisitos: ["17", "18", "22"] },
+
+  // EFIS QUINTO AÑO
+  { id: "efis5", nombre: "EFIS 5°", requisitos: ["17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"] },
+
+  // QUINTO AÑO
+  { id: "37", nombre: "Tecnología aplicada a los productos alimenticios", requisitos: ["28", "35", "30", "27", "32", "26"] },
+  { id: "38", nombre: "Teriogenología", requisitos: ["28", "30", "27", "32", "31", "34", "35"] },
+  { id: "39", nombre: "Enfermedades de caninos y felinos", requisitos: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "efis5"] },
+  { id: "40", nombre: "Enfermedades de los equinos", requisitos: ["33"] },
+  { id: "41", nombre: "Enfermedades de aves y pilíferos", requisitos: ["26", "28"] },
+  { id: "42", nombre: "Bromatología e inspección de alimentos", requisitos: ["37"] },
+  { id: "43", nombre: "Análisis clínicos veterinarios", requisitos: ["35", "40", "39"] },
+  { id: "44", nombre: "Métodos complementarios de diagnóstico", requisitos: ["40", "39"] },
+  { id: "45", nombre: "Inmunobiología aplicada", requisitos: ["35", "41", "40", "39", "30", "28"] },
+  { id: "46", nombre: "Biotecnología de la reproducción", requisitos: ["38"] },
+  { id: "47", nombre: "Cirugía II y anestesiología", requisitos: ["35", "40", "39", "38"] },
+  { id: "48", nombre: "Introducción a ciencia animales laboratorio", requisitos: ["28"] },
+
+  // EFIS SEXTO AÑO
+  { id: "efis6", nombre: "EFIS 6°", requisitos: ["26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36"] },
+
+  // SEXTO AÑO
+  { id: "49", nombre: "Clínica de caninos y felinos", requisitos: ["39", "44", "43", "38"] },
+  { id: "50", nombre: "Clínica y sanidad de los rumiantes", requisitos: ["35", "43", "45", "38"] },
+  { id: "51", nombre: "Clínica de equinos", requisitos: ["40", "44", "43", "45", "46", "47", "38"] },
+  { id: "52", nombre: "Clínica y sanidad de cerdos", requisitos: ["43", "45", "46", "38"] },
+  { id: "53", nombre: "Bienestar animal", requisitos: ["efis6"] },
+  { id: "54", nombre: "Ética y legislación veterinaria", requisitos: ["42"] },
+  { id: "55", nombre: "Prácticas preprofesionales", requisitos: ["49", "50", "51", "52", "53", "54"] },
+  { id: "56", nombre: "Optativa I" },
+  { id: "57", nombre: "Optativa II" },
+  { id: "58", nombre: "Optativa III" },
+  { id: "59", nombre: "Informática" }
 ];
 
-const gridContainer = document.getElementById("grid-container");
+const estado = {};
 
-// Agrupar materias por año y semestre
-const materiasPorAnio = {};
-materias.forEach(m => {
-  if (!materiasPorAnio[m.anio]) materiasPorAnio[m.anio] = {};
-  const semestre = m.semestre || "Sin semestre";
-  if (!materiasPorAnio[m.anio][semestre]) materiasPorAnio[m.anio][semestre] = [];
-  materiasPorAnio[m.anio][semestre].push(m);
-});
+function crearMalla() {
+  const contenedor = document.getElementById("malla-container");
+  contenedor.innerHTML = "";
 
-// Renderizar materias
-for (const anio in materiasPorAnio) {
-  const yearBlock = document.createElement("div");
-  yearBlock.className = "year-block";
+  const materiasConBloques = materias.reduce((acum, mat) => {
+    const año = obtenerAño(mat.id);
+    if (!acum[año]) acum[año] = [];
+    acum[año].push(mat);
+    return acum;
+  }, {});
 
-  const title = document.createElement("div");
-  title.className = "year-title";
-  title.textContent = `Año ${anio}`;
-  yearBlock.appendChild(title);
-
-  for (const semestre in materiasPorAnio[anio]) {
-    const semestreBlock = document.createElement("div");
-    semestreBlock.className = "semester";
-
-    const semTitle = document.createElement("div");
-    semTitle.className = "semester-title";
-    semTitle.textContent = semestre;
-    semestreBlock.appendChild(semTitle);
-
-    materiasPorAnio[anio][semestre].forEach(m => {
+  Object.entries(materiasConBloques).forEach(([año, lista]) => {
+    const bloque = document.createElement("div");
+    bloque.className = "bloque";
+    bloque.innerHTML = `<h2>${año}</h2>`;
+    lista.forEach(mat => {
       const div = document.createElement("div");
-      div.className = "subject locked";
-      div.textContent = m.nombre;
-      div.dataset.id = m.id;
-      if (m.efis) div.dataset.efis = "true";
-
-      div.addEventListener("click", () => {
-        if (div.classList.contains("locked")) return;
-        div.classList.toggle("completed");
-        actualizarDesbloqueos();
-      });
-
-      semestreBlock.appendChild(div);
+      div.className = `materia bloqueada`;
+      div.id = `materia-${mat.id}`;
+      div.innerHTML = `
+        <span>${mat.nombre}</span>
+        <button onclick="toggleAprobado('${mat.id}')">Aprobar</button>
+      `;
+      bloque.appendChild(div);
     });
+    contenedor.appendChild(bloque);
+  });
 
-    yearBlock.appendChild(semestreBlock);
-  }
-
-  gridContainer.appendChild(yearBlock);
+  actualizarEstados();
 }
 
-// Lógica para desbloquear materias según requisitos
-function actualizarDesbloqueos() {
-  const completadas = new Set([...document.querySelectorAll(".subject.completed")]
-    .map(e => e.dataset.id));
+function obtenerAño(id) {
+  const num = parseInt(id.replace("efis", ""));
+  if (id.includes("efis")) return `EFIS - ${num}° año`;
+  if (num <= 5) return "1° año - 1° semestre";
+  if (num <= 8) return "1° año - 2° semestre";
+  if (num <= 13) return "2° año - 1° semestre";
+  if (num <= 16) return "2° año - 2° semestre";
+  if (num <= 24) return "3° año";
+  if (num <= 36) return "4° año";
+  if (num <= 48) return "5° año";
+  if (num <= 59) return "6° año";
+  return "Otros";
+}
 
-  // EFIS aprobadas automáticamente si todas las materias del año están aprobadas
-  for (const anio in materiasPorAnio) {
-    const todas = document.querySelectorAll(`.year-block:nth-child(${anio}) .subject`);
-    const aprobadas = [...todas].filter(e => e.classList.contains("completed"));
-    if (aprobadas.length === todas.length) completadas.add("efis" + anio);
-  }
+function toggleAprobado(id) {
+  estado[id] = !estado[id];
+  actualizarEstados();
+}
 
-  document.querySelectorAll(".subject").forEach(div => {
-    const id = div.dataset.id;
-    const mat = materias.find(m => m.id === id);
-    if (!mat) return;
+function actualizarEstados() {
+  materias.forEach(mat => {
+    const div = document.getElementById(`materia-${mat.id}`);
+    const cumplidos = (mat.requisitos || []).every(req => estado[req]);
+    const aprobada = estado[mat.id];
 
-    const requisitos = mat.requisitos || [];
-    const cumplidos = requisitos.every(r => completadas.has(r));
-    if (cumplidos || requisitos.length === 0) {
-      div.classList.remove("locked");
-    } else {
-      div.classList.add("locked");
-    }
+    div.className = "materia";
+    if (!cumplidos) div.classList.add("bloqueada");
+    else div.classList.add("desbloqueada");
+    if (aprobada) div.classList.add("aprobada");
   });
 }
 
-actualizarDesbloqueos();
-
+window.onload = crearMalla;
