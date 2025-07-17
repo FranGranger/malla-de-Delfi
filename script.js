@@ -7,7 +7,7 @@ function actualizarEstado() {
     const id = materia.id;
     const requisitos = materia.dataset.requisitos ? materia.dataset.requisitos.split(',').filter(x => x) : [];
 
-    // "all" significa que requiere todas las materias (menos optativas/efis)
+    // "all" significa que requiere todas las materias (menos optativas)
     let desbloqueada = requisitos.every(req => {
       if (req === 'all') {
         return materias.filter(m => !['m56','m57','m58','m59'].includes(m.id)).every(m => aprobadas.has(m.id));
@@ -17,12 +17,35 @@ function actualizarEstado() {
 
     if (aprobadas.has(id)) {
       materia.classList.add('aprobada');
-      materia.disabled = false; // permitir desmarcarla
-      materia.setAttribute('title', 'Doble clic para desaprobar');
+      materia.disabled = true;
+      materia.setAttribute('title', 'Materia aprobada');
     } else if (desbloqueada) {
       materia.disabled = false;
       materia.classList.remove('aprobada');
-      materia.setAttribute('title', 'Doble clic para aprobar');
+      materia.removeAttribute('title');
     } else {
       materia.disabled = true;
-      materia.classList.remove('aproba
+      materia.classList.remove('aprobada');
+      materia.removeAttribute('title');
+    }
+  });
+}
+
+function aprobarMateria(event) {
+  const btn = event.target;
+  if (btn.disabled) return;
+
+  aprobadas.add(btn.id);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(Array.from(aprobadas)));
+  actualizarEstado();
+}
+
+function init() {
+  materias.forEach(materia => {
+    materia.addEventListener('dblclick', aprobarMateria);
+  });
+
+  actualizarEstado();
+}
+
+window.addEventListener('load', init);
