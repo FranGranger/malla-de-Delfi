@@ -1,34 +1,40 @@
 const STORAGE_KEY = "materiasAprobadas";
-const materias = Array.from(document.querySelectorAll(".materia"));
 const aprobadas = new Set(JSON.parse(localStorage.getItem(STORAGE_KEY)) || []);
 
 function estaDesbloqueada(materia) {
   const requisitos = (materia.dataset.req || "").split(",").filter(r => r);
+
   if (requisitos.includes("all")) {
-    return materias
-      .filter(m => !["m56", "m57", "m58", "m59"].includes(m.dataset.id))
-      .every(m => aprobadas.has(m.dataset.id));
+    // "all" significa que requiere TODAS las demás materias excepto EFIS
+    const todasMenosEfis = Array.from(document.querySelectorAll(".materia"))
+      .filter(m => !m.classList.contains("efi"))
+      .map(m => m.dataset.id);
+    return todasMenosEfis.every(id => aprobadas.has(id));
   }
+
   return requisitos.every(req => aprobadas.has(req));
 }
 
 function actualizarEstado() {
-  materias.forEach(materia => {
+  document.querySelectorAll(".materia").forEach(materia => {
     const id = materia.dataset.id;
     const desbloqueada = estaDesbloqueada(materia);
+    const aprobada = aprobadas.has(id);
 
-    materia.classList.toggle("bloqueada", !desbloqueada);
-    materia.classList.toggle("aprobada", aprobadas.has(id));
-    materia.style.pointerEvents = desbloqueada ? "auto" : "none";
-    materia.style.opacity = desbloqueada ? "1" : "0.5";
+    // Estilo visual
+    materia.classList.toggle("aprobada", aprobada);
+    materia.classList.toggle("bloqueada", !desbloqueada && !aprobada); // si está aprobada no la bloquea
+    materia.style.opacity = desbloqueada || aprobada ? "1" : "0.5";
+    materia.style.pointerEvents = desbloqueada || aprobada ? "auto" : "none";
   });
 }
 
-function aprobarMateria(event) {
+function toggleAprobada(event) {
   const materia = event.currentTarget;
   const id = materia.dataset.id;
 
-  if (!estaDesbloqueada(materia)) return;
+  // Si NO está desbloqueada y no está ya aprobada, no permitas aprobar
+  if (!estaDesbloqueada(materia) && !aprobadas.has(id)) return;
 
   if (aprobadas.has(id)) {
     aprobadas.delete(id);
@@ -40,8 +46,9 @@ function aprobarMateria(event) {
   actualizarEstado();
 }
 
-materias.forEach(materia => {
-  materia.addEventListener("dblclick", aprobarMateria);
+document.querySelectorAll(".materia").forEach(materia => {
+  materia.addEventListener("dblclick", toggleAprobada);
 });
 
+// Inicial
 actualizarEstado();
