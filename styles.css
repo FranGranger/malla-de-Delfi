@@ -1,74 +1,65 @@
 body {
+  font-family: Arial, sans-serif;
   background-color: #ffe6f0;
-  font-family: 'Segoe UI', sans-serif;
-  color: #333;
   margin: 0;
   padding: 20px;
+  color: #333;
 }
 
 h1 {
   text-align: center;
-  color: #800080;
-}
-
-#grid-container {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
+  color: #6a0dad;
+  margin-bottom: 30px;
 }
 
 .year-block {
-  background-color: #f5d0ff;
-  border-radius: 16px;
-  padding: 20px;
-  box-shadow: 0 4px 8px #aaa;
-  transition: all 0.3s ease;
+  background-color: #f3d6ff;
+  border-left: 10px solid #a64ac9;
+  margin-bottom: 20px;
+  padding: 15px;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
 }
 
 .year-block:hover {
-  transform: scale(1.01);
-}
-
-.year-title {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 15px;
-  color: #4b0082;
-}
-
-.semester {
-  margin-bottom: 20px;
+  background-color: #f8e5ff;
 }
 
 .semester-title {
-  font-size: 18px;
   font-weight: bold;
+  margin-top: 10px;
   margin-bottom: 10px;
-  color: #9932cc;
+  color: #8a2be2;
 }
 
-.subject {
-  background-color: #e6ccff;
+.materia {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
   padding: 10px 15px;
-  margin: 8px 0;
-  border-radius: 8px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  transition: all 0.2s ease-in-out;
+}
+
+.materia:hover {
+  transform: scale(1.02);
+  background-color: #fdf2ff;
+}
+
+.materia button {
+  background-color: #d8b4ef;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  border: 2px solid #800080;
+  font-weight: bold;
+  color: #4b0082;
 }
 
-.subject.locked {
-  background-color: #eee;
-  color: #aaa;
-  border-style: dashed;
-  cursor: not-allowed;
-}
-
-.subject.completed {
-  background-color: #b19cd9;
-  text-decoration: line-through;
-}
-
-.subject:hover:not(.locked):not(.completed) {
-  background-color: #d1b3ff;
+.materia button.aprobada {
+  background-color: #a0e7a0;
+  color: #145214;
 }
