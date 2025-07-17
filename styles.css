@@ -1,65 +1,83 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', sans-serif;
   background-color: #ffe6f0;
   margin: 0;
-  padding: 20px;
+  padding: 2rem;
   color: #333;
+  transition: background 0.5s ease;
 }
 
 h1 {
   text-align: center;
-  color: #6a0dad;
-  margin-bottom: 30px;
+  margin-bottom: 2rem;
+  color: #b30059;
 }
 
-.year-block {
-  background-color: #f3d6ff;
-  border-left: 10px solid #a64ac9;
-  margin-bottom: 20px;
-  padding: 15px;
-  border-radius: 10px;
-  transition: background-color 0.3s ease;
+.malla-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
 }
 
-.year-block:hover {
-  background-color: #f8e5ff;
+.semestre {
+  background-color: #fff0f5;
+  border-radius: 15px;
+  padding: 1rem;
+  width: 260px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  animation: fadeIn 0.8s ease;
 }
 
-.semester-title {
-  font-weight: bold;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  color: #8a2be2;
+.semestre h2 {
+  text-align: center;
+  color: #a0005a;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
 }
 
 .materia {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #ffffff;
-  border: 1px solid #cccccc;
-  padding: 10px 15px;
-  margin-bottom: 8px;
-  border-radius: 6px;
-  transition: all 0.2s ease-in-out;
+  background-color: #dabfff;
+  padding: 0.6rem;
+  border-radius: 10px;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  font-weight: 500;
+  transition: background 0.3s ease;
 }
 
-.materia:hover {
-  transform: scale(1.02);
-  background-color: #fdf2ff;
+.materia.efi {
+  background-color: #ffcccc;
+  border: 2px dashed #ff6699;
 }
 
 .materia button {
-  background-color: #d8b4ef;
+  margin-top: 0.4rem;
+  background-color: #b30059;
+  color: white;
   border: none;
-  padding: 6px 12px;
-  border-radius: 4px;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
   cursor: pointer;
-  font-weight: bold;
-  color: #4b0082;
+  font-size: 0.9rem;
 }
 
-.materia button.aprobada {
-  background-color: #a0e7a0;
-  color: #145214;
+.materia button:hover {
+  background-color: #8a0047;
+}
+
+.materia.aprobada {
+  opacity: 0.6;
+  text-decoration: line-through;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
