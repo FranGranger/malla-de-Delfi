@@ -1,14 +1,208 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Malla Interactiva de Veterinaria</title>
-  <link rel="stylesheet" href="styles.css"/>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Malla Interactiva Veterinaria</title>
+<link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <h1>Malla Interactiva de Veterinaria</h1>
-  <div id="malla-container" class="malla-container"></div>
-  <script src="script.js"></script>
+
+<header>
+  <h1>Malla Interactiva Veterinaria</h1>
+  <p>Haz clic en "Aprobar" para aprobar materias y desbloquear las siguientes.</p>
+</header>
+
+<div class="malla-container">
+
+  <!-- Primer Año -->
+  <section class="anio">
+    <h2>Primer Año</h2>
+
+    <div class="cuatrimestre">
+      <h3>Primer Semestre</h3>
+      <div class="materias">
+        <button class="materia desbloqueada" id="m1" data-requisitos="">1 Bioquímica</button>
+        <button class="materia desbloqueada" id="m2" data-requisitos="">2 Biofísica</button>
+        <button class="materia desbloqueada" id="m3" data-requisitos="">3 Biología celular y del desarrollo</button>
+        <button class="materia desbloqueada" id="m4" data-requisitos="">4 Embriología y anatomía sistemática</button>
+        <button class="materia desbloqueada" id="m5" data-requisitos="">5 Bioestadística</button>
+      </div>
+    </div>
+
+    <div class="cuatrimestre">
+      <h3>Segundo Semestre</h3>
+      <div class="materias">
+        <button class="materia" id="m6" data-requisitos="m1,m2">6 Fisicoquímica aplicada a la fisiología veterinaria</button>
+        <button class="materia" id="m7" data-requisitos="m1,m3">7 Microbiología I</button>
+        <button class="materia" id="m8" data-requisitos="m3">8 Histología</button>
+        <button class="materia" id="m4b" data-requisitos="">4 Embriología y anatomía sistemática</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Segundo Año -->
+  <section class="anio">
+    <h2>Segundo Año</h2>
+
+    <div class="cuatrimestre">
+      <h3>Primer Cuatrimestre</h3>
+      <div class="materias">
+        <button class="materia" id="m9" data-requisitos="m4b,m6,m8">9 Fisiología</button>
+        <button class="materia" id="m10" data-requisitos="m1,m7,m8">10 Inmunología animal básica</button>
+        <button class="materia" id="m11" data-requisitos="m4b">11 Anatomía veterinaria</button>
+        <button class="materia" id="m12" data-requisitos="m5">12 Economía General y Sociología</button>
+        <button class="materia" id="m13" data-requisitos="m7,m8">13 Microbiología II</button>
+      </div>
+    </div>
+
+    <div class="cuatrimestre">
+      <h3>Segundo Cuatrimestre</h3>
+      <div class="materias">
+        <button class="materia" id="m14" data-requisitos="m5,m6,m7,m8">14 Parasitología</button>
+        <button class="materia" id="m15" data-requisitos="m4b,m6,m8,m10">15 Patología general veterinaria</button>
+        <button class="materia" id="m16" data-requisitos="m5">16 Epidemiología y salud pública básica</button>
+        <button class="materia" id="m9b" data-requisitos="m4b,m6,m8">9 Fisiología</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tercer Año y Efis -->
+  <section class="anio">
+    <h2>Tercer Año</h2>
+    <div class="efis-container">
+      <button class="materia" id="efis3" data-requisitos="m1,m2,m3,m4,m5,m6,m7,m8,m9,m10,m11,m12,m13,m14,m15,m16">
+        Efis 3er Año (Requiere 1er año completo)
+      </button>
+    </div>
+
+    <div class="cuatrimestre">
+      <h3>Primer Cuatrimestre</h3>
+      <div class="materias">
+        <button class="materia" id="m17" data-requisitos="m9,m11,m12,efis3">17 Zootecnia General</button>
+        <button class="materia" id="m18" data-requisitos="m9,m11,m12,m14,efis3">18 Nutrición animal y alimentos</button>
+        <button class="materia" id="m19" data-requisitos="m9,m11,m13,m14,m15,efis3">19 Patología especial</button>
+        <button class="materia" id="m20" data-requisitos="m9,m11,m15,efis3">20 Farmacología general</button>
+        <button class="materia" id="m21" data-requisitos="m15,efis3">21 Genética General</button>
+      </div>
+    </div>
+
+    <div class="cuatrimestre">
+      <h3>Segundo Cuatrimestre</h3>
+      <div class="materias">
+        <button class="materia" id="m22" data-requisitos="m17,m21,efis3">22 Genética de poblaciones y mejoramiento animal</button>
+        <button class="materia" id="m23" data-requisitos="m9,m11,m15,efis3">23 Semiología</button>
+        <button class="materia" id="m24" data-requisitos="m13,m14,m20,efis3">24 Farmacología general y toxicología</button>
+        <button class="materia desbloqueada" id="m25" data-requisitos="">25 Inglés técnico</button>
+        <button class="materia" id="m19b" data-requisitos="m9,m11,m13,m14,m15,efis3">19 Patología especial</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cuarto Año y Efis -->
+  <section class="anio">
+    <h2>Cuarto Año</h2>
+    <div class="efis-container">
+      <button class="materia" id="efis4" data-requisitos="m9,m10,m11,m12,m13,m14,m15,m16,m17,m18,m19,m20,m21,m22,m23,m24,m25">
+        Efis 4to Año (Requiere 2do año completo)
+      </button>
+    </div>
+
+    <div class="cuatrimestre">
+      <h3>Primer Cuatrimestre</h3>
+      <div class="materias">
+        <button class="materia" id="m26" data-requisitos="m18,m22,efis4">26 Producción de aves y pilíferos</button>
+        <button class="materia" id="m27" data-requisitos="m17,m17,m19,m20,m22,efis4">27 Producción de bovinos de carne</button>
+        <button class="materia" id="m28" data-requisitos="m19,m23,m24,efis4">28 Infectología, zoonosis y enfermedades exóticas y emergentes</button>
+        <button class="materia" id="m29" data-requisitos="efis4">29 Cirugía I</button>
+        <button class="materia" id="m30" data-requisitos="m17,m19,m23,m24,efis4">30 Epidemiología y salud pública aplicada</button>
+      </div>
+    </div>
+
+    <div class="cuatrimestre">
+      <h3>Segundo Cuatrimestre</h3>
+      <div class="materias">
+        <button class="materia" id="m31" data-requisitos="m23,m17,m18,m19,m20,m22,efis4">31 Producción porcina</button>
+        <button class="materia" id="m32" data-requisitos="m23,m17,m18,m19,m20,m22,efis4">32 Producción de bovinos con leche</button>
+        <button class="materia" id="m33" data-requisitos="m23,m17,m18,m19,m20,m22,efis4">33 Producción equina</button>
+        <button class="materia" id="m34" data-requisitos="m23,m17,m18,m19,m20,m22,efis4">34 Producción ovina y caprina</button>
+        <button class="materia" id="m35" data-requisitos="m17,m18,m23,m24,m28,m27,m30,efis4">35 Enfermedades de rumiantes y cerdos</button>
+        <button class="materia" id="m36" data-requisitos="m18,m17,m22,efis4">36 Gestión de empresa y economía agraria</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quinto Año y Efis -->
+  <section class="anio">
+    <h2>Quinto Año</h2>
+    <div class="efis-container">
+      <button class="materia" id="efis5" data-requisitos="m17,m18,m19,m20,m21,m22,m23,m24,m25,m26,m27,m28,m29,m30,m31,m32,m33,m34,m35,m36">
+        Efis 5to Año (Requiere 3er año completo)
+      </button>
+    </div>
+
+    <div class="cuatrimestre">
+      <h3>Primer Cuatrimestre</h3>
+      <div class="materias">
+        <button class="materia" id="m39" data-requisitos="m1,m2,m3,m4,m5,m6,m7,m8,m9,m10,m11,m12,m13,m14,m15,m16,m17,m18,m19,m20,m21,m22,m23,m24,m25,m26,m27,m28,m29,m30,m31,m32,m33,m34,m35,m36">
+          39 Enfermedades de los caninos y felinos domésticos
+        </button>
+        <button class="materia" id="m37" data-requisitos="m28,m35,m30,m27,m32,m26">37 Tecnología aplicada a los productos alimenticios</button>
+        <button class="materia" id="m41" data-requisitos="m26,m28">41 Enfermedades de las aves y pilíferos</button>
+        <button class="materia" id="m40" data-requisitos="m33">40 Enfermedades de los equinos</button>
+        <button class="materia" id="m38" data-requisitos="m28,m30,m27,m32,m31,m34,m35">38 Teriogenología</button>
+      </div>
+    </div>
+
+    <div class="cuatrimestre">
+      <h3>Segundo Cuatrimestre</h3>
+      <div class="materias">
+        <button class="materia" id="m42" data-requisitos="m37">42 Bromatología, higiene e inspección de productos alimenticios</button>
+        <button class="materia" id="m43" data-requisitos="m35,m40,m39">43 Análisis clínicos veterinarios</button>
+        <button class="materia" id="m45" data-requisitos="m35,m41,m40,m39,m30,m28">45 Inmunobiología animal aplicada</button>
+        <button class="materia" id="m44" data-requisitos="m40,m39">44 Métodos complementarios de diagnóstico</button>
+        <button class="materia" id="m48" data-requisitos="m28">48 Introducción a la ciencia de los animales de laboratorio</button>
+        <button class="materia" id="m46" data-requisitos="m38">46 Biotecnología de la reproducción</button>
+        <button class="materia" id="m47" data-requisitos="m35,m40,m39,m38">47 Cirugía II y anestesiología</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sexto Año y Efis -->
+  <section class="anio">
+    <h2>Sexto Año</h2>
+    <div class="efis-container">
+      <button class="materia" id="efis6" data-requisitos="m26,m27,m28,m29,m30,m31,m32,m33,m34,m35,m36,m37,m38,m39,m40,m41,m42,m43,m44,m45,m46,m47">
+        Efis 6to Año (Requiere 4to año completo)
+      </button>
+    </div>
+
+    <div class="cuatrimestre">
+      <h3>Primer Cuatrimestre</h3>
+      <div class="materias">
+        <button class="materia" id="m51" data-requisitos="m40,m44,m43,m45,m46,m47,m38">51 Clínica de equinos</button>
+        <button class="materia" id="m52" data-requisitos="m43,m45,m46,m38">52 Clínica y sanidad de cerdos</button>
+        <button class="materia" id="m49" data-requisitos="m39,m44,m43,m38">49 Clínica de caninos y felinos</button>
+        <button class="materia" id="m50" data-requisitos="m35,m43,m45,m38">50 Clínica y sanidad de los rumiantes</button>
+        <button class="materia" id="m53" data-requisitos="efis6">53 Bienestar animal</button>
+        <button class="materia" id="m54" data-requisitos="m42">54 Ética y legislación veterinaria</button>
+      </div>
+    </div>
+
+    <div class="cuatrimestre">
+      <h3>Segundo Cuatrimestre</h3>
+      <div class="materias">
+        <button class="materia" id="m55" data-requisitos="all">55 Prácticas pre profesionales</button>
+        <button class="materia desbloqueada" id="m56" data-requisitos="">56 Optativa I</button>
+        <button class="materia desbloqueada" id="m57" data-requisitos="">57 Optativa II</button>
+        <button class="materia desbloqueada" id="m58" data-requisitos="">58 Optativa III</button>
+        <button class="materia desbloqueada" id="m59" data-requisitos="">59 Informática</button>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
